@@ -1,0 +1,23 @@
+#inner {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.hidden {
+    display: none;
+}
+
+.notification {
+    position: fixed;
+    top: 1em;
+    right: 1em;
+    background-color: #FFF3CD;
+    padding: 10px;
+    color: #B3994E;
+    z-index: 1;
+}
+
+form button {
+    margin: 5px 0 0 0;
+}

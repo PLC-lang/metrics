@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RuSTy Dashboard</title>
+  <script src="https://cdn.plot.ly/plotly-1.58.4.min.js"></script>
+  <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+  <div id="inner">
+    <h1><a href="https://github.com/PLC-lang/rusty">RuSTy</a> Dashboard</h1>
+
+    <div id="notification" class="notification hidden"></div>
+    <form method="get" action=".">
+      <input name="start" type="date">
+      <input name="end" type="date">
+      <button>Submit</button>
+      <br>
+      <button onclick="setDays(1)">Last day</button>
+      <button onclick="setDays(7)">Last 7 days</button>
+      <button onclick="setDays(30)">Last 30 days</button>
+    </form>
+
+  </div>
+
+  <script src="./script.js"></script>
+</body>
+
+</html>
