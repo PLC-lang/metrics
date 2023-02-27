@@ -54,7 +54,7 @@ function unzip(content) {
     return [timestamps, data];
 }
 async function main() {
-    const url = "https://raw.githubusercontent.com/PLC-lang/rusty/metrics/metrics.json";
+    const url = "https://raw.githubusercontent.com/PLC-lang/rusty/metrics-data/metrics.json";
     const content = await (await fetch(url)).text();
     let [timestamps, data] = unzip(content);
     generatePlot("build-times oscat", timestamps, [

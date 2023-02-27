@@ -73,7 +73,7 @@ function unzip(content: string): [any[], Map<string, Metrics>] {
 }
 
 async function main() {
-    const url = "https://raw.githubusercontent.com/PLC-lang/rusty/metrics/metrics.json";
+    const url = "https://raw.githubusercontent.com/PLC-lang/rusty/metrics-data/metrics.json";
     const content = await (await fetch(url)).text();
     let [timestamps, data] = unzip(content);
 
