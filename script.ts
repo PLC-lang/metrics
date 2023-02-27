@@ -73,10 +73,9 @@ function unzip(content: string): [any[], Map<string, Metrics>] {
 }
 
 async function main() {
-    const url = "https://raw.githubusercontent.com/PLC-lang/rusty/metrics/metrics.json";
+    const url = "https://raw.githubusercontent.com/PLC-lang/metrics/main/metrics.json";
     const content = await (await fetch(url)).text();
     let [timestamps, data] = unzip(content);
-
 
     generatePlot(
         "Build-Times oscat",
@@ -109,12 +108,12 @@ async function main() {
     );
 
     generatePlot(
-        "Wall-Times sieve-c",
+        "Wall-Times of sieve C and ST version",
         timestamps,
         [
+            data.get("sieve-st/none")!,
             data.get("sieve-c/0")!,
-            data.get("sieve-c/1")!,
-            data.get("sieve-c/2")!,
+            data.get("sieve-st/aggressive")!,
             data.get("sieve-c/3")!,
         ]
     );

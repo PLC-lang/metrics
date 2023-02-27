@@ -11,7 +11,6 @@ const colorPalette = [
     '#508642',
     '#CCA300', // 9: dark sand
 ];
-
 class Metrics {
     constructor(name) {
         this.label = name.split('/')[1];
@@ -20,7 +19,6 @@ class Metrics {
         this.value = [];
     }
 }
-
 function generatePlot(title, timestamps, data) {
     const options = {
         title,
@@ -38,7 +36,6 @@ function generatePlot(title, timestamps, data) {
     });
     new uPlot(options, [timestamps, ...(data.map((it) => it.value.map((it) => it / 1000)))], document.getElementById("plots"));
 }
-
 function unzip(content) {
     const entries = content.split('\n').filter((it) => it.length > 0).map((it) => JSON.parse(it));
     const timestamps = entries.map((it) => it.timestamp);
@@ -56,9 +53,8 @@ function unzip(content) {
     }
     return [timestamps, data];
 }
-
 async function main() {
-    const url = "https://raw.githubusercontent.com/PLC-lang/rusty/metrics/metrics.json";
+    const url = "https://raw.githubusercontent.com/PLC-lang/metrics/main/metrics.json";
     const content = await (await fetch(url)).text();
     let [timestamps, data] = unzip(content);
     generatePlot("Build-Times oscat", timestamps, [
@@ -76,10 +72,10 @@ async function main() {
         data.get("sieve-st/default"),
         data.get("sieve-st/aggressive"),
     ]);
-    generatePlot("Wall-Times sieve-c", timestamps, [
+    generatePlot("Wall-Times of sieve C and ST version", timestamps, [
+        data.get("sieve-st/none"),
         data.get("sieve-c/0"),
-        data.get("sieve-c/1"),
-        data.get("sieve-c/2"),
+        data.get("sieve-st/aggressive"),
         data.get("sieve-c/3"),
     ]);
 }

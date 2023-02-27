@@ -5,17 +5,8 @@
     margin-bottom: 75px;
 }
 
-p {
-    margin: 0;
-    padding: 10px;
-}
-
-button {
-    position: absolute;
-    left: 100px;
-    top: 100px;
-}
-
-#content {
-    text-align: center;
+.wrapper {
+    /* See also the `width` option in the `generatePlot` function within the script.ts file */
+    max-width: 1400px;
+    margin: auto;
 }

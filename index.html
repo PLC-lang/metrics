@@ -1,24 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
 <html>
 
 <head>
     <meta charset="utf-8">
-    <title>Dashboard</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Permissions-Policy" content="interest-cohort=()">
 
     <link rel="stylesheet" href="dist/uPlot.min.css">
     <link rel="stylesheet" href="style.css">
     <script src="dist/uPlot.iife.js"></script>
+
+    <title>Dashboard</title>
 </head>
 
 <body>
-    <div id="content">
-        <h2><a href="https://github.com/plc-lang/rusty">RuSTy</a>s Metrics Dashboard</h2>
-        Goodies: <br>
-        1) CMD / Alt(?) + Left Click on a legend item only displays that metric <br>
-        2) Left-Click + Drag to select a range to zoom into<br>
-        3) Double Left-Click to reset zooming<br>
+    <div class="wrapper">
+        <div class="content">
+            <h2>Rusty's Metrics Dashboard</h2>
+            <details style="cursor: pointer;">
+                <summary>Tips & Tricks</summary>
+                <ul style="cursor: text">
+                    <li>Alt + Left-Click on a legend item to only displays that metric<br></li>
+                    <li>Left-Click and select a range to zoom into it</li>
+                    <li>Double Left-Click to reset the zoom<br> </li>
+                </ul>
+            </details>
 
-        <div id="plots"></div>
+            <div id="plots"></div>
+        </div>
     </div>
 
     <script src="script.js"></script>
