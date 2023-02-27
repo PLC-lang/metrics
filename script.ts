@@ -25,12 +25,19 @@ class Metrics {
     }
 }
 
-function generatePlot(title: string, timestamps: any[], data: Metrics[]) {
+function generatePlot(title: string, yLabel: string, timestamps: any[], data: Metrics[], toSeconds = true) {
     const options = {
         title,
         width: 700,
         height: 325,
-        series: [{}]
+        series: [{}],
+        axes: [
+            {},
+            {
+                label: yLabel,
+                labelGap: 10,
+            }
+        ]
     };
 
     data.forEach((it, idx) => {
@@ -44,9 +51,11 @@ function generatePlot(title: string, timestamps: any[], data: Metrics[]) {
         )
     });
 
+    const rate = toSeconds ? 1000 : 1;
+
     new uPlot(
         options,
-        [timestamps, ...(data.map((it) => it.value.map((it) => it / 1000)))],
+        [timestamps, ...(data.map((it) => it.value.map((it) => it / rate)))],
         document.getElementById("plots")!
     );
 }
@@ -78,7 +87,8 @@ async function main() {
     let [timestamps, data] = unzip(content);
 
     generatePlot(
-        "build-times oscat",
+        "oscat",
+        "build times in seconds",
         timestamps,
         [
             data.get("oscat/none")!,
@@ -89,15 +99,18 @@ async function main() {
     );
 
     generatePlot(
-        "wall-times rusty --check",
+        "rusty --check",
+        "wall times in milliseconds",
         timestamps,
         [
             data.get("check/oscat")!,
-        ]
+        ],
+        false
     );
 
     generatePlot(
-        "wall-times sieve-st",
+        "sieve-st",
+        "wall times in seconds",
         timestamps,
         [
             data.get("sieve-st/none")!,
@@ -108,7 +121,8 @@ async function main() {
     );
 
     generatePlot(
-        "wall-times sieve-st & sieve-c",
+        "sieve-st & sieve-c",
+        "wall times in seconds",
         timestamps,
         [
             data.get("sieve-st/none")!,

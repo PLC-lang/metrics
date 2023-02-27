@@ -19,12 +19,19 @@ class Metrics {
         this.value = [];
     }
 }
-function generatePlot(title, timestamps, data) {
+function generatePlot(title, yLabel, timestamps, data, toSeconds = true) {
     const options = {
         title,
         width: 700,
         height: 325,
-        series: [{}]
+        series: [{}],
+        axes: [
+            {},
+            {
+                label: yLabel,
+                labelGap: 10,
+            }
+        ]
     };
     data.forEach((it, idx) => {
         options.series.push({
@@ -34,7 +41,8 @@ function generatePlot(title, timestamps, data) {
             // fill: "rgba(255,0,0,0.1)",
         });
     });
-    new uPlot(options, [timestamps, ...(data.map((it) => it.value.map((it) => it / 1000)))], document.getElementById("plots"));
+    const rate = toSeconds ? 1000 : 1;
+    new uPlot(options, [timestamps, ...(data.map((it) => it.value.map((it) => it / rate)))], document.getElementById("plots"));
 }
 function unzip(content) {
     const entries = content.split('\n').filter((it) => it.length > 0).map((it) => JSON.parse(it));
@@ -57,22 +65,22 @@ async function main() {
     const url = "https://raw.githubusercontent.com/PLC-lang/rusty/metrics-data/metrics.json";
     const content = await (await fetch(url)).text();
     let [timestamps, data] = unzip(content);
-    generatePlot("build-times oscat", timestamps, [
+    generatePlot("oscat", "build times in seconds", timestamps, [
         data.get("oscat/none"),
         data.get("oscat/less"),
         data.get("oscat/default"),
         data.get("oscat/aggressive"),
     ]);
-    generatePlot("wall-times rusty --check", timestamps, [
+    generatePlot("rusty --check", "wall times in milliseconds", timestamps, [
         data.get("check/oscat"),
-    ]);
-    generatePlot("wall-times sieve-st", timestamps, [
+    ], false);
+    generatePlot("sieve-st", "wall times in seconds", timestamps, [
         data.get("sieve-st/none"),
         data.get("sieve-st/less"),
         data.get("sieve-st/default"),
         data.get("sieve-st/aggressive"),
     ]);
-    generatePlot("wall-times sieve-st & sieve-c", timestamps, [
+    generatePlot("sieve-st & sieve-c", "wall times in seconds", timestamps, [
         data.get("sieve-st/none"),
         data.get("sieve-c/0"),
         data.get("sieve-st/aggressive"),
