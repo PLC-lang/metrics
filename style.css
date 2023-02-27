@@ -1,23 +1,21 @@
-#inner {
-    width: 100%;
-    max-width: 1200px;
-    margin: 0 auto;
+.uplot {
+    display: inline-block;
+    width: min-content;
+    vertical-align: top;
+    margin-bottom: 75px;
 }
 
-.hidden {
-    display: none;
-}
-
-.notification {
-    position: fixed;
-    top: 1em;
-    right: 1em;
-    background-color: #FFF3CD;
+p {
+    margin: 0;
     padding: 10px;
-    color: #B3994E;
-    z-index: 1;
 }
 
-form button {
-    margin: 5px 0 0 0;
+button {
+    position: absolute;
+    left: 100px;
+    top: 100px;
+}
+
+#content {
+    text-align: center;
 }

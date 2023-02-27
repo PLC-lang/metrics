@@ -1,0 +1,9 @@
+{
+  "devDependencies": {
+    "typescript": "^4.9.5"
+  },
+  "scripts": {
+    "build": "./node_modules/typescript/bin/tsc -p tsconfig.json",
+    "start": "./node_modules/typescript/bin/tsc -p tsconfig.json --watch"
+  }
+}
