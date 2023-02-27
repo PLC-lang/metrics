@@ -54,25 +54,25 @@ function unzip(content) {
     return [timestamps, data];
 }
 async function main() {
-    const url = "https://raw.githubusercontent.com/PLC-lang/metrics/main/metrics.json";
+    const url = "https://raw.githubusercontent.com/PLC-lang/rusty/metrics/metrics.json";
     const content = await (await fetch(url)).text();
     let [timestamps, data] = unzip(content);
-    generatePlot("Build-Times oscat", timestamps, [
+    generatePlot("build-times oscat", timestamps, [
         data.get("oscat/none"),
         data.get("oscat/less"),
         data.get("oscat/default"),
         data.get("oscat/aggressive"),
     ]);
-    generatePlot("Wall-Times rusty --check", timestamps, [
+    generatePlot("wall-times rusty --check", timestamps, [
         data.get("check/oscat"),
     ]);
-    generatePlot("Wall-Times sieve-st", timestamps, [
+    generatePlot("wall-times sieve-st", timestamps, [
         data.get("sieve-st/none"),
         data.get("sieve-st/less"),
         data.get("sieve-st/default"),
         data.get("sieve-st/aggressive"),
     ]);
-    generatePlot("Wall-Times of sieve C and ST version", timestamps, [
+    generatePlot("wall-times sieve-st & sieve-c", timestamps, [
         data.get("sieve-st/none"),
         data.get("sieve-c/0"),
         data.get("sieve-st/aggressive"),

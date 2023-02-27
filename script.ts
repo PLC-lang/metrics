@@ -73,12 +73,12 @@ function unzip(content: string): [any[], Map<string, Metrics>] {
 }
 
 async function main() {
-    const url = "https://raw.githubusercontent.com/PLC-lang/metrics/main/metrics.json";
+    const url = "https://raw.githubusercontent.com/PLC-lang/rusty/metrics/metrics.json";
     const content = await (await fetch(url)).text();
     let [timestamps, data] = unzip(content);
 
     generatePlot(
-        "Build-Times oscat",
+        "build-times oscat",
         timestamps,
         [
             data.get("oscat/none")!,
@@ -89,7 +89,7 @@ async function main() {
     );
 
     generatePlot(
-        "Wall-Times rusty --check",
+        "wall-times rusty --check",
         timestamps,
         [
             data.get("check/oscat")!,
@@ -97,7 +97,7 @@ async function main() {
     );
 
     generatePlot(
-        "Wall-Times sieve-st",
+        "wall-times sieve-st",
         timestamps,
         [
             data.get("sieve-st/none")!,
@@ -108,7 +108,7 @@ async function main() {
     );
 
     generatePlot(
-        "Wall-Times of sieve C and ST version",
+        "wall-times sieve-st & sieve-c",
         timestamps,
         [
             data.get("sieve-st/none")!,
