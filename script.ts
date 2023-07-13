@@ -29,7 +29,7 @@ function generatePlot(title: string, yLabel: string, timestamps: any[], data: Me
     const options = {
         title,
         width: 700,
-        height: 325,
+        height: 300,
         series: [{}],
         axes: [
             {},
@@ -46,7 +46,7 @@ function generatePlot(title: string, yLabel: string, timestamps: any[], data: Me
                 label: it.label.toString(),
                 stroke: colorPalette[idx],
                 width: 1.5,
-                // fill: "rgba(255,0,0,0.1)",
+                fill: colorPalette[idx] + '10',
             }
         )
     });
@@ -98,6 +98,7 @@ async function main() {
         ]
     );
 
+    // TODO: Replace this with lexer data
     generatePlot(
         "rusty --check",
         "wall times in milliseconds",
