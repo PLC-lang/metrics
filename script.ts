@@ -98,7 +98,6 @@ async function main() {
         ]
     );
 
-    // TODO: Replace this with lexer data
     generatePlot(
         "lexer (combined.st)",
         "wall times in microseconds",
