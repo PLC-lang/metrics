@@ -71,7 +71,7 @@ async function main() {
         data.get("oscat/default"),
         data.get("oscat/aggressive"),
     ]);
-    generatePlot("lexer (combined.st)", "wall times in microseconds", timestamps, [
+    generatePlot("Lexer", "wall times in microseconds", timestamps, [
         data.get("lexer/combined.st"),
     ], false);
     generatePlot("sieve-st", "wall times in seconds", timestamps, [

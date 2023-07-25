@@ -99,7 +99,7 @@ async function main() {
     );
 
     generatePlot(
-        "lexer (combined.st)",
+        "Lexer",
         "wall times in microseconds",
         timestamps,
         [
