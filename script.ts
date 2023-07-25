@@ -100,11 +100,11 @@ async function main() {
 
     // TODO: Replace this with lexer data
     generatePlot(
-        "rusty --check",
-        "wall times in milliseconds",
+        "lexer (combined.st)",
+        "wall times in microseconds",
         timestamps,
         [
-            data.get("check/oscat")!,
+            data.get("lexer/combined.st")!,
         ],
         false
     );
